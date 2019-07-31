@@ -1,17 +1,17 @@
-var bonjour = require('bonjour')()
+var mdns = require('mdns')
 var browser
 
+var printers = {}
 process.on('bootstrap-module-middleware' as any, app => {
-  browser = bonjour.find({
-    type: 'tfprinter',
-    protocol: 'tcp'
-  })
+  browser = mdns.createBrowser(mdns.tcp('tfprinter'))
 
-  browser.on('up', service => {
-    ;(global as any).printers = browser.services
+  browser.on('serviceUp', service => {
+    printers[service.name] = service
+    ;(global as any).printers = [...Object.values(printers)]
   })
-  browser.on('down', service => {
-    ;(global as any).printers = browser.services
+  browser.on('serviceDown', service => {
+    delete printers[service.name]
+    ;(global as any).printers = [...Object.values(printers)]
   })
 
   browser.start()
