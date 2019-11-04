@@ -1,6 +1,6 @@
 {
   "name": "@things-factory/print-proxy-service",
-  "version": "1.0.3",
+  "version": "1.1.0-alpha.1",
   "main": "dist-server/index.js",
   "browser": "client/index.js",
   "things-factory": true,
@@ -21,7 +21,7 @@
     "migration:revert": "node ./node_modules/typeorm/cli.js migration:revert"
   },
   "dependencies": {
-    "@things-factory/shell": "^0.9.1",
+    "@things-factory/shell": "^1.0.0-alpha.1",
     "mdns": "^2.5.1",
     "printer": "^0.2.2"
   },
