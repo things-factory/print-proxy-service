@@ -1,7 +1,8 @@
 import { printers } from './controllers/printers'
 
 process.on('bootstrap-module-history-fallback' as any, (app, fallbackOption) => {
-  fallbackOption.whiteList.push(`^\/(${['printers'].join('|')})($|[/?#])`)
+  var paths = ['printers']
+  fallbackOption.whiteList.push(`^\/(${paths.join('|')})($|[/?#])`)
 })
 
 process.on('bootstrap-module-route' as any, (app, routes) => {
