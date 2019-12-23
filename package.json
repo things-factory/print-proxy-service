@@ -1,6 +1,6 @@
 {
   "name": "@things-factory/print-proxy-service",
-  "version": "1.1.0-alpha.4",
+  "version": "1.1.0-alpha.5",
   "main": "dist-server/index.js",
   "browser": "client/index.js",
   "things-factory": true,
@@ -22,8 +22,7 @@
   },
   "dependencies": {
     "@things-factory/shell": "^1.0.0-alpha.1",
-    "mdns": "^2.5.1",
-    "printer": "^0.2.2"
+    "mdns": "^2.5.1"
   },
   "devDependencies": {}
 }
