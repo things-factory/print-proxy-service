@@ -3,7 +3,13 @@ var browser
 
 var printers = {}
 process.on('bootstrap-module-middleware' as any, async app => {
-  browser = mdns.createBrowser(mdns.tcp('tfprinter'))
+  var sequence = [
+    mdns.rst.DNSServiceResolve(),
+    'DNSServiceGetAddrInfo' in mdns.dns_sd ? mdns.rst.DNSServiceGetAddrInfo() : mdns.rst.getaddrinfo({ families: [4] }),
+    mdns.rst.makeAddressesUnique()
+  ]
+
+  browser = mdns.createBrowser(mdns.tcp('tfprinter'), { resolverSequence: sequence })
 
   browser.on('serviceUp', service => {
     printers[service.name] = service
